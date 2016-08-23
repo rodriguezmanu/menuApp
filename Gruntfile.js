@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     less: {
       build: {
         files: {
-          'dist/main.css': ['css/main.less']
+          'dist/main.css': ['css/*.less']
         }
       }
     },
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         },
-        files: ['index.html']
+        files: ['index.html', 'css/*.less', 'js/*.js']
       }
     },
     copy: {
