@@ -1,0 +1,21 @@
+{
+  "name": "menu-app",
+  "authors": [
+    "Manuel Rodriguez <rodriguez.manu@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.5.0",
+    "jquery": "^2.2.0"
+  }
+}
