@@ -29,8 +29,10 @@
         var $dropdown = $(dropdownMenu);
 
         $.each(data, function(index, value) {
+            var classAttr = (index === 0) ? 'class="selected"' : '';
+
             $dropdown.append(
-                '<li data-key="' + index + '">' +
+                '<li data-key="' + index + '" ' + classAttr + '>' +
                     '<a href="#">' + value.title + '</a>' +
                     '<i class="fa fa-cog" aria-hidden="true"></i>' +
                 '</li>');
@@ -95,6 +97,9 @@
         $(dropdownMenu).on('click', 'li', function() {
             var index = $(dropdownMenu + ' li').index($(this));
 
+            $(dropdownMenu + ' li').removeClass('selected');
+            $(this).addClass('selected');
+
             $.getJSON(jsonData)
                 .done(function(response) {
                     createMealsMenu(response, index);
@@ -128,11 +133,13 @@
             $(mealsList).addClass('disabled');
             $iconDropdown.removeClass('fa-chevron-down');
             $iconDropdown.addClass('fa-chevron-up');
+            $(this).find(dropdownMenu).first().stop(true, true).slideDown();
         });
         $('.dropdown').on('hide.bs.dropdown', function() {
             $(mealsList).removeClass('disabled');
             $iconDropdown.addClass('fa-chevron-down');
             $iconDropdown.removeClass('fa-chevron-up');
+            $(this).find(dropdownMenu).first().stop(true, true).slideUp();
         });
     }
 })();
