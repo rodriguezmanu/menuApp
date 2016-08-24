@@ -52,6 +52,7 @@
                     '<i class="fa fa-pencil" aria-hidden="true"></i>' +
                 '</li>');
         });
+        checkButtonsAvail();
     }
 
     function listeners() {
