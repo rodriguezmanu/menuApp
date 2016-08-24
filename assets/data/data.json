@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Lunch Menu",
+        "meals": [
+            "Soup",
+            "Desserts",
+            "Drinks"
+        ]
+    },
+    {
+        "title": "Evening Menu",
+        "meals": [
+            "Milk",
+            "Cookies"
+        ]
+    }
+]
