@@ -4,14 +4,16 @@
         "meals": [
             "Soup",
             "Desserts",
-            "Drinks"
+            "Drinks",
+            "Chicken"
         ]
     },
     {
         "title": "Evening Menu",
         "meals": [
             "Milk",
-            "Cookies"
+            "Cookies",
+            "Orange Juice"
         ]
     }
 ]
