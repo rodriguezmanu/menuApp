@@ -1,0 +1,23 @@
+@import 'colors.less';
+
+.liStyle {
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #CCCCCC;
+        cursor: pointer;
+        &:hover {
+            border-left: 3px solid @red;
+        }
+        &.selected > a,
+        &:hover > a {
+            color: @red;
+        }
+        a {
+            color: #757575;
+            font-weight: bold;
+            &:hover {
+                color: @red;
+            }
+        }
+    }
+}

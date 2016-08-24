@@ -3,66 +3,78 @@
 @icon-font-path: '../assets/fonts/';
 @fa-font-path: '../assets/fonts/';
 
+@import 'mixins.less';
+@import 'colors.less';
+
 .menu-container {
-    border: 1px solid #CCCCCC;
+    border: 1px solid @grey;
     font-family: 'Open Sans', sans-serif;
     padding: 0;
     border-radius: 5px;
-    box-shadow: 0 3px 3px #CCCCCC;
+    box-shadow: 0 3px 3px @grey;
+    .disabled {
+        background-color: @grey;
+        pointer-events: none;
+    }
     a {
         text-decoration: none;
+    }
+    .fa-cog,
+    .fa-pencil {
+        color: @red;
+        float: right;
+        border: 2px solid @grey;
+        border-radius: 4px;
+        padding: 3px;
+        font-size: 17px;
+        &:hover {
+            border-color: @red;
+        }
     }
     .dropdown {
         .btn.btn-block {
             text-transform: uppercase;
-            color: #FFFFFF;
+            color: @white;
             font-weight: bold;
-            background-color: red;
+            background-color: @red;
             padding: 15px;
             text-align: left;
             border-radius: 0;
             font-size: 12px;
         }
-        .fa-chevron-down {
+        .fa-chevron-down,
+        .fa-chevron-up {
             float: right;
             font-size: 15px;
         }
         .dropdown-menu {
-            padding: 10px;
+            border-radius: 0;
+            padding: 0;
+            width: 100%;
+            margin: 0;
+            & > li > a {
+                display: inline;
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+            .liStyle;
         }
     }
     .meals ul {
         list-style: none;
         margin: 0;
         padding: 0;
-        li {
-            padding: 10px;
-            border-bottom: 1px solid #CCCCCC;
-            cursor: pointer;
-            &.selected > a {
-                color: red;
-            }
-            &:hover > a {
-                color: red;
-            }
-            a {
-                color: #757575;
-                font-weight: bold;
-                &:hover{
-                    color: red;
-                }
-            }
-        }
+        .liStyle;
     }
     .options {
         padding: 10px;
-        background-color: #E1E1E1;
+        background-color: @grey-1;
         button:hover {
-            color: red;
-            background-color: yellow;
+            color: @red;
         }
         button.disabled {
-            color: #CCCCCC;
+            color: @grey;
             background-color: black;
         }
         .btn-group {

@@ -3,7 +3,8 @@
         dropdownMenu = '.dropdown-menu',
         mealsList = '.meals ul',
         $downButton = $('.options .down'),
-        $upButton = $('.options .up');
+        $upButton = $('.options .up'),
+        $iconDropdown = $('.dropdown .menu-title + i')
 
     init();
 
@@ -31,6 +32,7 @@
             $dropdown.append(
                 '<li data-key="' + index + '">' +
                     '<a href="#">' + value.title + '</a>' +
+                    '<i class="fa fa-cog" aria-hidden="true"></i>' +
                 '</li>');
         });
     }
@@ -47,6 +49,7 @@
             $meals.append(
                 '<li data-key="' + index + '">' +
                     '<a href="#">' + value + '</a>' +
+                    '<i class="fa fa-pencil" aria-hidden="true"></i>' +
                 '</li>');
         });
     }
@@ -56,6 +59,7 @@
         upButton();
         changeDataMenu();
         selectMeal();
+        dropdownEvents();
     }
 
     function selectMeal() {
@@ -80,6 +84,9 @@
         } else if (mealsListN === mealSelectedIndex) {
             $downButton.addClass('disabled');
             $upButton.removeClass('disabled');
+        } else {
+            $upButton.removeClass('disabled');
+            $downButton.removeClass('disabled');
         }
     }
 
@@ -112,6 +119,19 @@
 
             $mealSelected.insertAfter($mealSelected.next());
             checkButtonsAvail();
+        });
+    }
+
+    function dropdownEvents() {
+        $('.dropdown').on('show.bs.dropdown', function() {
+            $(mealsList).addClass('disabled');
+            $iconDropdown.removeClass('fa-chevron-down');
+            $iconDropdown.addClass('fa-chevron-up');
+        });
+        $('.dropdown').on('hide.bs.dropdown', function() {
+            $(mealsList).removeClass('disabled');
+            $iconDropdown.addClass('fa-chevron-down');
+            $iconDropdown.removeClass('fa-chevron-up');
         });
     }
 })();
