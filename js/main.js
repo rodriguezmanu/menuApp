@@ -74,6 +74,25 @@
         });
     }
 
+    function checkButtonsMenuAvail() {
+        var menuListN = $('.dropdown .dropdown-menu li').length - 1,
+            menuSelectedIndex =  $('.dropdown .dropdown-menu li.selected').index();
+
+        if (menuSelectedIndex === -1) {
+            $downButton.addClass('disabled');
+            $upButton.addClass('disabled');
+        } else if (menuSelectedIndex === 0) {
+            $upButton.addClass('disabled');
+            $downButton.removeClass('disabled');
+        } else if (menuListN === menuSelectedIndex) {
+            $downButton.addClass('disabled');
+            $upButton.removeClass('disabled');
+        } else {
+            $upButton.removeClass('disabled');
+            $downButton.removeClass('disabled');
+        }
+    }
+
     function checkButtonsAvail() {
         var mealsListN = $(mealsList + ' > li').length - 1,
             mealSelectedIndex = $('.meals ul li.selected').index();
@@ -111,20 +130,36 @@
     }
 
     function upButton() {
-        $upButton.click(function() {
-            var $mealSelected = $('.meals ul li.selected');
+        $upButton.click(function(event) {
+            event.stopPropagation();
+            if ($('.dropdown.open').length) {
+                var $menuSelected =  $('.dropdown.open .dropdown-menu li.selected');
 
-            $mealSelected.insertBefore($mealSelected.prev());
-            checkButtonsAvail();
+                $menuSelected.insertBefore($menuSelected.prev());
+                checkButtonsMenuAvail();
+            } else {
+                var $mealSelected = $('.meals ul li.selected');
+
+                $mealSelected.insertBefore($mealSelected.prev());
+                checkButtonsAvail();
+            }
         });
     }
 
     function downButton() {
-        $downButton.click(function() {
-            var $mealSelected = $('.meals ul li.selected');
+        $downButton.click(function(event) {
+            event.stopPropagation();
+            if ($('.dropdown.open').length) {
+                var $menuSelected =  $('.dropdown.open .dropdown-menu li.selected');
 
-            $mealSelected.insertAfter($mealSelected.next());
-            checkButtonsAvail();
+                $menuSelected.insertAfter($menuSelected.next());
+                checkButtonsMenuAvail();
+            } else {
+                var $mealSelected = $('.meals ul li.selected');
+
+                $mealSelected.insertAfter($mealSelected.next());
+                checkButtonsAvail();
+            }
         });
     }
 
@@ -134,12 +169,14 @@
             $iconDropdown.removeClass('fa-chevron-down');
             $iconDropdown.addClass('fa-chevron-up');
             $(this).find(dropdownMenu).first().stop(true, true).slideDown();
+            checkButtonsMenuAvail();
         });
         $('.dropdown').on('hide.bs.dropdown', function() {
             $(mealsList).removeClass('disabled');
             $iconDropdown.addClass('fa-chevron-down');
             $iconDropdown.removeClass('fa-chevron-up');
             $(this).find(dropdownMenu).first().stop(true, true).slideUp();
+            checkButtonsAvail();
         });
     }
 })();
